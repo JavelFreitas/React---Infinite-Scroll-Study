@@ -1,0 +1,19 @@
+:root {
+    --cor-amarelo: #FFFF00;
+    --cor-cinza01: #333333;
+    --cor-cinza02: #262626;
+    --cor-cinza03: #484848;
+    --cor-cinza-max: #555;
+    --cor-branco: #FFF;
+    --cor-preto: #000;
+}
+
+
+.h3__title{
+    color: var(--cor-preto);
+}
+
+.h3__title--AC{
+    color: var(--cor-branco);
+}
+
