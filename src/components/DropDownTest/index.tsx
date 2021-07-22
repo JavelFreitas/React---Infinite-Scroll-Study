@@ -1,4 +1,4 @@
-import { ChangeEventHandler, EventHandler, useState } from "react";
+import { useState } from "react";
 
 interface Props {
     defaultValue: string,
@@ -7,14 +7,34 @@ interface Props {
 
 function DropDownTest(props: Props) {
     let { elements, defaultValue } = props;
-    let [paisesClickados, setPaisesClickados] = useState([]);
-    let [checked, setChecked] = useState(false);
+    let [paisesClickados, setPaisesClickados] = useState<string[]>([]);
     
-    function listaClickados(event: React.ChangeEvent<HTMLInputElement>){
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : false;
-        console.log(value);
-        setChecked(value);
+    function listaClickados(elementKey: string){
+        const target = document.getElementById(elementKey);
+        const attributeValue = target?.getAttribute("value");
+        if (attributeValue === null || attributeValue === undefined) {alert("Something Went Wrong"); return;};
+
+        for(let index = 0; index<paisesClickados.length; index++){
+            if(paisesClickados[index] === attributeValue){
+                let novaLista = (paisesClickados.filter((value: string) => value !== attributeValue)).sort()
+                setPaisesClickados(novaLista);
+                return;
+            }
+        }
+        
+        paisesClickados.push(attributeValue)
+        setPaisesClickados(paisesClickados.sort());
+        return;
+    }
+
+    function test (event: React.ChangeEvent<HTMLInputElement>){
+        console.log(event);
+        let targetEvent = event.target;
+        console.log(targetEvent);
+        console.log(targetEvent.checked);
+        let target = (document.getElementById("Paises_Brasil") as HTMLInputElement);
+        console.log("target" + target);
+        console.log(target.checked);
     }
 
     return (
@@ -31,9 +51,9 @@ function DropDownTest(props: Props) {
                     {elements.map(element => {
                         let elementKey = `${defaultValue}_${element}`;
                         return (
-                            <li key={elements.indexOf(element)} className="dds__dropdown-list-item dds__form-check" role="menuitemcheckbox" tabIndex={0} aria-checked="false">
+                            <li key={elements.indexOf(element)} id={`li-${elementKey}`} className="dds__dropdown-list-item dds__form-check" role="menuitemcheckbox" tabIndex={0} aria-checked="false">
                                 <label className="dds__form-check-label" htmlFor={elementKey}>
-                                    <input checked={checked} value={element} type="checkbox" id={elementKey} name={`${element}`} onChange={listaClickados} tabIndex={-1} className="dds__form-check-input test_check" />
+                                    <input value={element} type="checkbox" id={elementKey} name={`${element}`} onChange={event => listaClickados(elementKey)} tabIndex={-1} className="dds__form-check-input" />
                                     <span>
                                         {element}
                                     </span>

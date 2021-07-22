@@ -1,0 +1,112 @@
+.dds__layoutDev {
+    display: flex;
+    justify-content: start;
+    /* margin-left: 9.24%; */
+}
+
+.dds__layoutDev-h1 .dds__layoutDev-h3 {
+    display: flex;
+    justify-content: flex-start;
+    text-align: start;
+}
+
+.dds__locationInformation-info {
+    display: flex;
+    margin-bottom: 18.5px;
+}
+
+.dds__info-labelSelect{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20.46px;
+}
+
+.dds__checkbox-area {
+    display: flex;
+}
+
+.dds__checkbox-options {
+    display: flex;
+    flex-direction: row;
+}
+
+.dds__checkbox-services {
+    margin-right: 26px;
+    display: flex;
+    align-items: center;
+}
+
+.dds__checkbox-availableOptions {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-right: 31px;
+}
+
+.dds__checkbox-available {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+.dds__checkbox-label {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 0;
+    margin-left: 8px;
+
+    color: #000000;
+}
+
+.dds__inputMock {
+    width: 351.54px;
+    height: 30px;
+    padding: 13.11px;
+    background-color: #EEEEEE;
+    color: #006BBD;
+}
+
+.dds__inputMock-postcode {
+    width: 351.54px;
+    height: 30px;
+    padding: 11.43px;
+}
+
+
+.dds__mock-label{
+    float: left;
+    margin-bottom: 5px;
+}
+
+.dds__h1 {
+    display: flex;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 32px;
+    color: #000000;
+
+}
+
+.dds__h3 {
+    display: flex;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 13px;
+    line-height: 32px;
+    color: #000000;
+}
+
+.dds__lable-span {
+    color: red;
+}
