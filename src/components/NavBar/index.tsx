@@ -9,6 +9,7 @@ function NavBar(){
             <ul className="nav-links">
                 <Link className='nav-items' to='/'>Home</Link>
                 <Link className='nav-items' to='/counter'>Counter</Link>
+                <Link className='nav-items' to='/githubPagination'>Pagination</Link>
                 <ButtonTheme/>
             </ul>
         </nav>

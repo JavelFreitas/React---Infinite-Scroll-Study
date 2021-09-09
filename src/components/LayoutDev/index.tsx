@@ -1,7 +1,4 @@
-import { useState } from "react";
 import "./styles.css";
-import MultiDropMock from '../MultiDropMock'
-import plusAdd from "../../layoutElements/plusAdd.svg"
 
 function LayoutDev() {
     return (

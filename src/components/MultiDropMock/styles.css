@@ -10,3 +10,6 @@
 /* .dds__multiDropMock {
     width: 381.54px;
 } */
+input[type=checkbox] {
+    display: none;
+}

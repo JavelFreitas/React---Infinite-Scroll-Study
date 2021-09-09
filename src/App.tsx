@@ -1,5 +1,6 @@
 import './App.css';
 import NavBar from './components/NavBar'
+import GithubPagination from './components/GithubPagination/GithubPagination'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from "./components/Home"
@@ -19,6 +20,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/counter" component={Counter}/>
+          <Route path="/githubPagination" component={GithubPagination}/>
         </Switch>
       </Router>
     </div>
