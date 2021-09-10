@@ -1,9 +1,22 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 
 export default function GithubPagination() {
+
     const [followers, setFollowers] = useState<any>([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const observer: any = useRef();
+
+    const observableLi = useCallback(li => {
+        if(observer.current) observer.current.disconnect();
+        observer.current = new IntersectionObserver( entries => {
+            if(entries[0].isIntersecting){
+                setCurrentPage(previous => previous + 1);
+                // console.log("Apareceu");
+            }
+        })
+        if(li) observer.current.observe(li);
+    }, [])
 
     useEffect(() => {
         const ENDPOINT = 'https://api.github.com/users/javelfreitas/followers';
@@ -23,6 +36,13 @@ export default function GithubPagination() {
     //     intersectionObserver.observe( /*TODO colocar o obserdador no ultimo elemento do map*/);
     //     return () => intersectionObserver.disconnect()
     // }, [])
+
+    function addLi(){
+        console.log(followers);
+        
+        setFollowers(["aaa", ...followers]);
+    }
+
     return (
         <div>
             <ul>
@@ -31,16 +51,18 @@ export default function GithubPagination() {
                     console.log(index)
                     console.log(followers.length)
                     return (
-                        index === followers.length - 1 
-                            ? <li key={follower.login} style={{color: 'red'}}>
-                                {follower.login}
+                        index === followers.length - 5 
+                            ? <li ref={observableLi} key={follower.login} id={follower.login} style={{color: 'red'}}>
+                                {follower.login || "followers"} 
                             </li> 
-                            : <li key={follower.login}>
-                                {follower.login}
+                            : <li key={follower.login} id={follower.login}>
+                                {follower.login || "followers"}
                             </li> 
                     )
                 })}
+                <li id="last_list-element"></li>
             </ul>
+            <button onClick={addLi}>Add Li</button>
         </div>
     )
 }
