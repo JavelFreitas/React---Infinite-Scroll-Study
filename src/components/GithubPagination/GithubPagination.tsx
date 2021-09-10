@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-
+import GithubUser from "./GithubUser"
 
 export default function GithubPagination() {
 
@@ -39,28 +39,26 @@ export default function GithubPagination() {
 
     function addLi(){
         console.log(followers);
-        
-        setFollowers(["aaa", ...followers]);
+        setFollowers([{login: Date.now()}, ...followers]);
     }
 
     return (
         <div>
-            <ul>
+            <ul id="followers">
                 {currentPage}
                 {followers.map((follower: any, index: number) => {
-                    console.log(index)
-                    console.log(followers.length)
                     return (
-                        index === followers.length - 5 
-                            ? <li ref={observableLi} key={follower.login} id={follower.login} style={{color: 'red'}}>
-                                {follower.login || "followers"} 
-                            </li> 
-                            : <li key={follower.login} id={follower.login}>
-                                {follower.login || "followers"}
-                            </li> 
+                        index === followers.length - 1 
+                            ? <GithubUser follower={follower} reference={observableLi} key={follower.login}/> 
+                            // <li ref={observableLi} key={follower.login} id={follower.login} style={{color: 'red'}}>
+                            //     {follower.login || "follower"} 
+                            // </li> 
+                            : <GithubUser follower={follower} key={follower.login}/> 
+                            // <li key={follower.login} id={follower.login}>
+                            //     {follower.login || "follower"}
+                            // </li> 
                     )
                 })}
-                <li id="last_list-element"></li>
             </ul>
             <button onClick={addLi}>Add Li</button>
         </div>
