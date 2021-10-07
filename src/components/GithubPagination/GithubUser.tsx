@@ -15,3 +15,4 @@ export default function GithubUser(props: GithubUsersProps){
         </div>
     )
 }
+//TODO Fazer com que carregue muitas pessoas (usar diego3g)

@@ -8,6 +8,9 @@ export default function GithubPagination() {
     const observer: any = useRef();
 
     const observableLi = useCallback(li => {
+        console.log("Inside Callback");
+        console.log(li);
+        
         if(observer.current) observer.current.disconnect();
         observer.current = new IntersectionObserver( entries => {
             if(entries[0].isIntersecting){
@@ -20,10 +23,10 @@ export default function GithubPagination() {
 
     useEffect(() => {
         const ENDPOINT = 'https://api.github.com/users/javelfreitas/followers';
-    const SEARCH_URL = `${ENDPOINT}?per_page=10&page=${currentPage}&order=DESC`;
-    fetch(SEARCH_URL)
-        .then(response => response.json())
-        .then((newFollowers) => setFollowers((prevFollow: any[]) => [...prevFollow, ...newFollowers]))    
+        const SEARCH_URL = `${ENDPOINT}?per_page=10&page=${currentPage}&order=DESC`;
+        fetch(SEARCH_URL)
+            .then(response => response.json())
+            .then((newFollowers) => setFollowers((prevFollow: any[]) => [...prevFollow, ...newFollowers]))    
     }, [currentPage])
     
     // useEffect(() => {
@@ -47,17 +50,11 @@ export default function GithubPagination() {
             <ul id="followers">
                 {currentPage}
                 {followers.map((follower: any, index: number) => {
-                    return (
-                        index === followers.length - 1 
-                            ? <GithubUser follower={follower} reference={observableLi} key={follower.login}/> 
-                            // <li ref={observableLi} key={follower.login} id={follower.login} style={{color: 'red'}}>
-                            //     {follower.login || "follower"} 
-                            // </li> 
-                            : <GithubUser follower={follower} key={follower.login}/> 
-                            // <li key={follower.login} id={follower.login}>
-                            //     {follower.login || "follower"}
-                            // </li> 
-                    )
+                    if(index === followers.length - 1){
+                        return (<GithubUser follower={follower} reference={observableLi} key={follower.login}/>)
+                    } else {
+                        return (<GithubUser follower={follower} key={follower.login}/> )
+                    }
                 })}
             </ul>
             <button onClick={addLi}>Add Li</button>
